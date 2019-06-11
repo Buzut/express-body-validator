@@ -59,7 +59,7 @@ function validateRequest(req, paramsList) {
 
         // validate presence
         if (!req.body[paramName] && paramType !== 'boolean' && !paramOptional) return Promise.reject(new BadRequestError(`Missing ${paramName} param`));
-        if (!req.body[paramName] && paramType === 'boolean' && typeof req.body[paramName] !== 'boolean') return Promise.reject(new BadRequestError(`Missing ${paramName} param`));
+        if (!req.body[paramName] && paramType === 'boolean' && typeof req.body[paramName] !== 'boolean' && !paramOptional) return Promise.reject(new BadRequestError(`Missing ${paramName} param`));
         if (!req.body[paramName] && paramOptional) continue; // eslint-disable-line
 
         // coerce if necessary
