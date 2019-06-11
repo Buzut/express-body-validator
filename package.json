@@ -1,0 +1,38 @@
+{
+  "name": "express-body-validator",
+  "version": "1.0.0",
+  "description": "Powerful promise based validator module to efficiently validate express POST params",
+  "main": "index.js",
+  "scripts": {
+    "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x * || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Buzut/express-body-validator.git"
+  },
+  "keywords": [
+    "express",
+    "validation",
+    "security",
+    "HTTP",
+    "API",
+    "REST",
+    "JSON",
+    "POST"
+  ],
+  "author": "Buzut (https://buzut.net)",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/Buzut/express-body-validator/issues"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-security": "^1.4.0"
+  },
+  "dependencies": {
+    "bad-request-error": "^1.0.2",
+    "v8n": "^1.3.2"
+  }
+}
