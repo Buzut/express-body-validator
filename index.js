@@ -45,7 +45,7 @@ function validateRequest(req, paramsList) {
             }
 
             if (paramType !== 'string' && paramType !== 'object' && paramType !== 'array' && paramType !== 'number' && paramType !== 'integer' && paramType !== 'boolean') {
-                throw new Error(`Type "${paramType}" is not supported. Type must be one of: string, object, array, number, integer, boolean`);
+                throw new TypeError(`Type "${paramType}" is not supported. Type must be one of: string, object, array, number, integer, boolean`);
             }
         }
 
