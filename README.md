@@ -15,10 +15,8 @@ exports.register = function (req, res) {
         { name: 'email', type: 'string', validator: v => v.pattern(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,6}$/i), failMsg: 'email must be an email string' },
         { name: 'password', type: 'string', validator: v => v.minLength(8).maxLength(50), failMsg: 'password must be comprised between 8 and 50 chars' }
     ])
-    then(
-        post => userModel.create(post.email, post.password)
-        .then(([id, token]) => res.status(201).json({ id, token }));
-    )
+    .then(post => userModel.create(post.email, post.password))
+    .then(([id, token]) => res.status(201).json({ id, token })
     .catch(err => handleError(err, res));
 };
 ```
