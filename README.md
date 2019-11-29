@@ -131,7 +131,7 @@ The `handleError` function used in the first exemple is very simple and allows y
 /**
  * Send client err if it's validation error or log if it's a native or low level error
  * @param { Object } err error object
- * @param { Object } [err]
+ * @param { Object } [res]
  */
 function handleError(err, res) {
     // send errmsg to user if it's a BadRequestError
