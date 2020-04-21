@@ -1,6 +1,6 @@
 {
   "name": "express-body-validator",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Powerful promise based validator module to efficiently validate express POST params",
   "main": "index.js",
   "engines": {
