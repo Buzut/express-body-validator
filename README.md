@@ -48,14 +48,13 @@ The simplest thing you want to do is validate the type of the parameter. For thi
 ```
 
 #### Available types
-Build in types are :
-
-* array
-* boolean
-* integer
-* number
-* object
-* string
+Build in types are:
+* Array
+* Boolean
+* Integer
+* Number
+* Object
+* String
 
 ### Validate type and some conditions
 Now, if you want to add some conditions like length, case or interval, you can easily leverage all the power of the [v8n api](https://imbrn.github.io/v8n/api/) by specifying a `validator` function. Here is an exemple object to make sure that an `age` param is integer and between 7 and 77 years old.
