@@ -1,9 +1,11 @@
 {
   "name": "express-body-validator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Powerful promise based validator module to efficiently validate express POST params",
   "main": "index.js",
-  "engines": { "node": ">=6.0.0" },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "prepare": "test -d .git && cd .git/hooks/ && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/commit-msg && curl -O https://raw.githubusercontent.com/Buzut/git-emojis-hook/master/prepare-commit-msg && chmod +x * || exit 0"
   },
