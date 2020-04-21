@@ -68,10 +68,11 @@ function validateRequest(req, paramsList) {
 
         // consider bool false & number/integer 0
         if (
-            !req.body[paramName]
-            && (paramType === 'boolean' && typeof req.body[paramName] !== 'boolean') // type is bool but value ain't bool
-            && ((paramType === 'number' || paramType === 'integer') // type is number/int
-            && req.body[paramName] === 0) // but ain't 0
+            !req.body[paramName] // value is false (either undefined or of a falsy value)
+            && (
+                (paramType === 'boolean' && typeof req.body[paramName] !== 'boolean') // type is bool but value ain't bool
+                || ((paramType === 'number' || paramType === 'integer') && req.body[paramName] !== 0) // or type is number/int but value ain't 0
+            )
             && !paramOptional
         ) return Promise.reject(new BadRequestError(`Missing ${paramName} param`));
 
