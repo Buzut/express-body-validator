@@ -10,9 +10,11 @@ const validateRequest = require('express-body-validator');
 const handleError = require('../lib/handleError');
 const userModel = require('../models/userModel');
 
+const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,6}$/i;
+
 exports.register = function (req, res) {
     validateRequest(req, [
-        { name: 'email', type: 'string', validator: v => v.pattern(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,6}$/i), failMsg: 'email must be an email string' },
+        { name: 'email', type: 'string', validator: v => v.pattern(emailRegex), failMsg: 'email must be an email string' },
         { name: 'password', type: 'string', validator: v => v.minLength(8).maxLength(50), failMsg: 'password must be comprised between 8 and 50 chars' }
     ])
     .then(post => userModel.create(post.email, post.password))
@@ -36,16 +38,24 @@ This validator is based on the amazing [v8n](https://imbrn.github.io/v8n/) valid
 
 To validate a request, you simply pass `validateRequest` your `request` (`req` in the above code) object with an array of all the parameters you want to validate. The validator returns a promise with either an error or an object with **all** the parameters contained in the initial [`request.body`](https://expressjs.com/en/api.html#req.body).
 
-What's not specified in the validationa array is **left untouched and returned as is**, without any check. 
+What's not specified in the validation array is **left untouched and returned as is**, without any check.
 
-
-### Validate type
-
+### Type validation
 The simplest thing you want to do is validate the type of the parameter. For this simple case, you just use a simple object.
 
 ```js
 { paramName: 'paramType' }
 ```
+
+#### Available types
+Build in types are :
+
+* array
+* boolean
+* integer
+* number
+* object
+* string
 
 ### Validate type and some conditions
 Now, if you want to add some conditions like length, case or interval, you can easily leverage all the power of the [v8n api](https://imbrn.github.io/v8n/api/) by specifying a `validator` function. Here is an exemple object to make sure that an `age` param is integer and between 7 and 77 years old.
@@ -125,7 +135,7 @@ By using the `failMsg` property, you can provide a custom error message in case 
 ### Handling errors
 Again, everything is promise based, so you handle errors in the `catch` block. To save you some lines of code, I'd strngly recommand to take advantage of the [bad-request-error](https://github.com/Buzut/bad-request-error) and use a function to automatically handle errors like in the first exemple.
 
-The `handleError` function used in the first exemple is very simple and allows you to delegate all errors throughout your app. It will respond with an error code in case of a `BadRequestError`, or respond with a `500` error code otherwise while also logging it. If `response` object is not provided (async handler, errors not meant to be sent to user…), it will just log the error.  
+The `handleError` function used in the first exemple is very simple and allows you to delegate all errors throughout your app. It will respond with an error code in case of a `BadRequestError`, or respond with a `500` error code otherwise while also logging it. If `response` object is not provided (async handler, errors not meant to be sent to user…), it will just log the error.
 
 ```js
 /**
